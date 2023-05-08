@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedBadgeMVC.Data.Entities
 {
-    public class ResponseEntity
+    public class ApplicationEntity
     {
         [Key]
         public int Id { get; set; }
