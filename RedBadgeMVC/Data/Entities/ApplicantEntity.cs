@@ -8,9 +8,9 @@ namespace RedBadgeMVC.Data.Entities
 {
     public class ApplicantEntity : UserEntity
     {
-        [Key]
-        public int Id { get; set; }
-        public virtual List<ApplicationEntity> MyApplications {get;set;} = new List<ApplicationEntity>();
-        public virtual List<ResponseEntity> Responses {get;set;} = new List<ResponseEntity>();
+        public string ApplicantName { get; set; }
+        public int ApplicantAge { get; set; }
+        public virtual List<ApplicationEntity> UserApps {get;set;} = new List<ApplicationEntity>();
+
     }
 }
