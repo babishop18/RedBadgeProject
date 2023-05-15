@@ -13,8 +13,10 @@ namespace RedBadgeMVC.Data.Entities
         public int ResponseId { get; set; }
         public enum ResponseStatus { Accepted, Denied, ContinueProcess }
         public string ResponseMessage { get; set; }
+        public DateTimeOffset DateResponded { get; set; }
         [ForeignKey("Application")]
         public int AppFKey { get; set; }
+        public virtual ApplicationEntity AppForResponse { get; set; }
 
     }
 }
