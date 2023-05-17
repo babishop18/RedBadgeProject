@@ -10,7 +10,9 @@ namespace RedBadgeMVC.Services.Job
     {
         Task<bool> CreateJobAsync(JobCreate request);
         Task<bool> RemoveJobByIdAsync(int JobId);
-        Task<IEnumerable<JobDetail>> GetJobListAsync();
+        Task<List<JobListItem>> GetJobListAsync();
         Task<bool> UpdateJobByIdAsync(int jobId, JobUpdate update);
+        Task<List<JobListItem>> GetAllJobsAsync();
+        Task<JobListItem> GetJobById(int id);
     }
 }

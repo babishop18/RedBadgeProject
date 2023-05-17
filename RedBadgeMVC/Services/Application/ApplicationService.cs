@@ -13,7 +13,6 @@ namespace RedBadgeMVC.Services.Application
     public class ApplicationService : IApplicationService
     {
         private readonly int _applicantFKey;
-        private readonly int _jobFKey;
         private readonly RedBadgeProjectDbContext _context;
 
         public ApplicationService(IHttpContextAccessor httpContextAccessor, RedBadgeProjectDbContext dbContext)
@@ -32,6 +31,7 @@ namespace RedBadgeMVC.Services.Application
         {
             ApplicationEntity newApp = new ApplicationEntity
             {
+                JobId = request.JobId,
                 FullName = request.FullName,
                 PhoneNumber = request.PhoneNumber,
                 FullAddress = request.FullAddress,
@@ -52,15 +52,15 @@ namespace RedBadgeMVC.Services.Application
             var AppToDisplay = await _context.JobApps.Where(entity => entity.ApplicantFKey == _applicantFKey)
                 .Select(entity => new UserAppListItem
                 {
-
+                    JobTitle = entity.Job.JobTitle
                 }).ToListAsync();
 
             return AppToDisplay;
         }
 
-        public async Task<IEnumerable<AppListItem>> GetJobsAppListAsync()
+        public async Task<IEnumerable<AppListItem>> GetJobsAppListAsync(int jobId)
         {
-            var AppToDisplay = await _context.JobApps.Where(entity => entity.JobFKey == _jobFKey)
+            var AppToDisplay = await _context.JobApps.Where(entity => entity.JobId == jobId)
                 .Select(entity => new AppListItem
                 {
                     FullName = entity.FullName,

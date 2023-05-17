@@ -12,12 +12,13 @@ namespace RedBadgeMVC.Data
         public RedBadgeProjectDbContext(DbContextOptions<RedBadgeProjectDbContext> options) : base(options) { }
         public DbSet<ApplicationEntity> JobApps { get; set; }
         public DbSet<JobEntity> Jobs { get; set; }
+        public DbSet<ApplicationEntity> Applications { get; set; }
         public DbSet<ResponseEntity> Responses { get; set; }
         public DbSet<UserEntity> Users { get; set; }
          public DbSet<CompanyEntity> Companies { get; set; }
           public DbSet<ApplicantEntity> Applicants { get; set; }
 
-          protected override void OnModelCreating(ModelBuilder modelBuilder)
+          /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -37,13 +38,13 @@ namespace RedBadgeMVC.Data
                 .WithMany(r => r.JobApps)
                 .HasForeignKey(so => so.JobFKey)
                 .OnDelete(DeleteBehavior.Restrict);
-/*
+
             modelBuilder.Entity<ResponseEntity>()
                 .HasOne(so => so.AppForResponse)
                 .WithOne(r => r.Response)
                 .HasForeignKey(so => so.AppFKey)
                 .OnDelete(DeleteBehavior.Restrict);
-*/
+
             modelBuilder.Entity<JobEntity>()
                 .HasOne(l => l.Company)
                 .WithMany(r => r.Jobs) //
@@ -51,6 +52,6 @@ namespace RedBadgeMVC.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
         }
-
+*/
     }
 }

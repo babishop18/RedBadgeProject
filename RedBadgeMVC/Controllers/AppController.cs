@@ -45,9 +45,9 @@ namespace RedBadgeMVC.Controllers
 
         [Authorize(Policy = "CustomCompanyEntity")]
         [HttpGet]
-        public async Task<IActionResult> GetJobsAppListAsync()
+        public async Task<IActionResult> GetJobsAppListAsync(int jobId)
         {
-            var AppsToDisplay = await _appService.GetJobsAppListAsync();
+            var AppsToDisplay = await _appService.GetJobsAppListAsync(jobId);
             return Ok(AppsToDisplay);
         }
 

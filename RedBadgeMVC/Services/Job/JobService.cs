@@ -63,10 +63,10 @@ namespace RedBadgeMVC.Services.Job
             return await _context.SaveChangesAsync() == 1;
         }
 
-        public async Task<IEnumerable<JobDetail>> GetJobListAsync()
+        public async Task<List<JobListItem>> GetJobListAsync()
         {
-            var JobToDisplay = await _context.Jobs.Where(entity => entity.CompanyFKey == _companyFKey)
-                .Select(entity => new JobDetail
+            var JobsToDisplay = await _context.Jobs.Where(entity => entity.CompanyFKey == _companyFKey)
+                .Select(entity => new JobListItem
                 {
                     JobTitle = entity.JobTitle,
                     JobId = entity.JobId,
@@ -76,7 +76,38 @@ namespace RedBadgeMVC.Services.Job
                     JobSummary = entity.JobSummary
                 }).ToListAsync();
             
-            return JobToDisplay;
+            return JobsToDisplay;
+        }
+
+        public async Task<List<JobListItem>> GetAllJobsAsync()
+        {
+            var JobsToDisplay = await _context.Jobs
+                .Select(entity => new JobListItem
+                {
+                    JobTitle = entity.JobTitle,
+                    JobId = entity.JobId,
+                    JobSalary = entity.JobSalary,
+                    JobHourlyPay = entity.JobHourlyPay,
+                    JobLocation = entity.JobLocation,
+                    JobSummary = entity.JobSummary
+                }).ToListAsync();
+
+            return JobsToDisplay;
+        }
+
+        public async Task<JobListItem> GetJobById(int id)
+        {
+            JobEntity? job = await _context.Jobs
+                .Include(r => r.JobApps)
+                .FirstOrDefaultAsync(r => r.JobId == id);
+            if (job is null) {
+                return null;
+            }
+            JobListItem jobDetail = new JobListItem()
+            {
+                
+            };
+            return jobDetail;
         }
 
         public async Task<bool> UpdateJobByIdAsync(int jobId,JobUpdate update)

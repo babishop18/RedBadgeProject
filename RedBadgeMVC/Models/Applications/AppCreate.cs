@@ -7,6 +7,7 @@ namespace RedBadgeMVC.Models.Applications
 {
     public class AppCreate
     {
+        public int JobId { get; set; }
         public string FullName { get; set; }
         public int PhoneNumber { get; set; }
         public string FullAddress { get; set; }

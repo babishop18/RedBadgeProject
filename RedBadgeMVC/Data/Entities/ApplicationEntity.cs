@@ -23,7 +23,7 @@ namespace RedBadgeMVC.Data.Entities
         public int ApplicantFKey { get; set; }
         public virtual ApplicantEntity Applicant { get; set; }
         [ForeignKey("Job")]
-        public int JobFKey { get; set; }
+        public int JobId { get; set; }
          public virtual JobEntity Job { get; set; }
         public virtual ResponseEntity Response{ get; set; }
 }

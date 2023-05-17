@@ -10,7 +10,7 @@ namespace RedBadgeMVC.Services.Application
     {
         Task<bool> CreateAppAsync(AppCreate request);
         Task<IEnumerable<UserAppListItem>> GetUsersAppListAsync();
-        Task<IEnumerable<AppListItem>> GetJobsAppListAsync();
+        Task<IEnumerable<AppListItem>> GetJobsAppListAsync(int jobId);
         Task<AppDetail> GetAppByIdAsync(int AppId);
     }
 }

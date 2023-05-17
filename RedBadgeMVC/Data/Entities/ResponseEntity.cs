@@ -16,7 +16,6 @@ namespace RedBadgeMVC.Data.Entities
         public DateTimeOffset DateResponded { get; set; }
         [ForeignKey("Application")]
         public int AppFKey { get; set; }
-        public virtual ApplicationEntity AppForResponse { get; set; }
 
     }
 }
